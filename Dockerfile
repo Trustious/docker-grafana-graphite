@@ -12,7 +12,7 @@ RUN     apt-get -y install software-properties-common
 RUN     add-apt-repository -y ppa:chris-lea/node.js
 RUN     apt-get -y update
 RUN     apt-get -y install python-django-tagging python-simplejson python-memcache python-ldap python-cairo python-pysqlite2 python-support \
-                           python-pip gunicorn supervisor nginx-light nodejs git wget curl openjdk-7-jre build-essential python-dev
+                           python-pip gunicorn supervisor nodejs git wget curl openjdk-7-jre build-essential python-dev
 
 # Install Elasticsearch
 #RUN     cd ~ && wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.deb
@@ -84,7 +84,6 @@ ADD     ./grafana/config.js /src/grafana/dist/config.js
 #ADD     ./grafana/default-dashboard.json /src/grafana/dist/app/dashboards/default.json
 
 # Configure nginx and supervisord
-ADD     ./nginx/nginx.conf /etc/nginx/nginx.conf
 ADD     ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 
@@ -92,9 +91,6 @@ ADD     ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # ---------------- #
 #   Expose Ports   #
 # ---------------- #
-
-# Grafana
-EXPOSE  80
 
 # StatsD UDP port
 EXPOSE  8125/udp
