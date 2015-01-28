@@ -45,12 +45,9 @@ RUN     mkdir /src                                                              
 # Install & Patch Grafana
 RUN     mkdir /src/grafana                                                                                                              &&\
         git clone https://github.com/grafana/grafana.git /src/grafana                                                                   &&\
-        cd /src/grafana                                                                                                                 &&\
-        git checkout v1.7.0
+        cd /src/grafana
 
-ADD     ./grafana/correctly-show-urlencoded-metrics.patch /src/grafana/correctly-show-urlencoded-metrics.patch
-RUN     git apply /src/grafana/correctly-show-urlencoded-metrics.patch --directory=/src/grafana                                         &&\
-        cd /src/grafana                                                                                                                 &&\
+RUN     cd /src/grafana                                                                                                                 &&\
         npm install                                                                                                                     &&\
         npm install -g grunt-cli                                                                                                        &&\
         grunt build 
@@ -84,7 +81,7 @@ RUN     cd /var/lib/graphite/webapp/graphite && python manage.py syncdb --noinpu
 
 # Configure Grafana
 ADD     ./grafana/config.js /src/grafana/dist/config.js
-ADD     ./grafana/default-dashboard.json /src/grafana/dist/app/dashboards/default.json
+#ADD     ./grafana/default-dashboard.json /src/grafana/dist/app/dashboards/default.json
 
 # Configure nginx and supervisord
 ADD     ./nginx/nginx.conf /etc/nginx/nginx.conf
