@@ -15,8 +15,8 @@ RUN     apt-get -y install python-django-tagging python-simplejson python-memcac
                            python-pip gunicorn supervisor nginx-light nodejs git wget curl openjdk-7-jre build-essential python-dev
 
 # Install Elasticsearch
-RUN     cd ~ && wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.deb
-RUN     cd ~ && dpkg -i elasticsearch-1.3.2.deb && rm elasticsearch-1.3.2.deb
+#RUN     cd ~ && wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.deb
+#RUN     cd ~ && dpkg -i elasticsearch-1.3.2.deb && rm elasticsearch-1.3.2.deb
 
 # Install Whisper, Carbon and Graphite-Web
 RUN     pip install Twisted==11.1.0
