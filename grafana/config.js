@@ -10,7 +10,7 @@ function (Settings) {
       elasticsearch: {
         type: 'elasticsearch',
         url: "/elasticsearch",
-        index: 'grafana-dash',
+        index: 'es-grafana-dash',
         grafanaDB: true,
       }
     },
@@ -18,16 +18,15 @@ function (Settings) {
     // default start dashboard
     default_route: '/dashboard/file/default.json',
 
-    // Elasticsearch index for storing dashboards
-    grafana_index: "grafana-dash",
-
     // specify the limit for dashboard search results
     search: {
-      max_results: 20
+      max_results: 100
     },
 
     // set to false to disable unsaved changes warning
     unsaved_changes_warning: true,
+
+    window_title_prefix: 'Grafana - ',
 
     // set the default timespan for the playlist feature
     // Example: "1m", "1h"
